@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <h1>Spring Boot Thymeleaf Demo</h1>
+    <h2>Edit User</h2>
+    <form action="#" th:action="@{/actualizar}" th:object="${user}" method="post">
+        <table>
+            <tr>
+                <td>User Name:</td>
+                <td><input type="text" th:field="*{userName}" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" th:field="*{password}">
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" th:field="*{email}" /></td>
+            </tr>
+            <tr>
+                <td>Roles</td>
+                <td>
+                    <select th:field="*{roles}" multiple="multiple">
+                        <option th:each="role : ${roles}"
+                                th:value="${role.id}"
+                                th:text="${role.roleName}"
+                        />
+                    </select>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+    <a href="/users">Back</a>
+
+</body>

@@ -1,0 +1,37 @@
+<DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot Thymeleaf Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <h1>Spring Boot Thymeleaf Demo</h1>
+    <h2> List Users </h2>
+    <botton type="button" onclick="location.href='/create'" th:text = "Add user" title = "Crear Nuevo User"></botton>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.roles}"></td>
+                    <td>
+                        <a th:href="@{/edit/{id}(id=${user.id})}">Edit</a>
+                        <a th:href="@{/delete/{id}(id=${user.id})}" onclick="return confirm('Está seguro de eliminar el usuario?');">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
